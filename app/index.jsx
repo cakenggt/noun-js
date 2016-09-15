@@ -2,12 +2,10 @@ import 'babel-polyfill';
 import React from 'react';
 import {Router, Route, IndexRoute, IndexLink, Link, hashHistory} from 'react-router';
 import {render} from 'react-dom';
+import ReactPaginate from 'react-paginate';
 import {nounList} from '../lib/nounlist';
 
 var App = React.createClass({
-  getInitialState: function() {
-    return {};
-  },
   render: function() {
     return (
       <div>
@@ -20,8 +18,16 @@ var App = React.createClass({
 });
 
 var LibraryList = React.createClass({
+  getInitialState: function(){
+    return {
+      pageNum: 0
+    }
+  },
   render: function(){
-    var libraryLinks = nounList.map(function(noun, i){
+    var numOnPage = 10;
+    var start = this.state.pageNum*numOnPage;
+    var stop = start+numOnPage;
+    var libraryLinks = nounList.slice(start, stop).map(function(noun, i){
       return (
         <span key={noun}>
           <Link to={noun}>{noun}.js</Link>
@@ -34,16 +40,33 @@ var LibraryList = React.createClass({
         <h1>
           <i
             className="material-icons"
-            title="Hourglass">
-            hourglass_empty
+            title="Javascript Library Directory">
+            book
           </i>
           Javascript Library Directory
         </h1>
-        <div>
+        <div
+          id="libraryList"
+          className="library-list">
           {libraryLinks}
+          <ReactPaginate previousLabel={"previous"}
+            nextLabel={"next"}
+            breakLabel={<a href="">...</a>}
+            breakClassName={"break-me"}
+            pageNum={Math.ceil(nounList.length/numOnPage)}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            clickCallback={this.handlePageClick}
+            containerClassName={"pagination"}
+            subContainerClassName={"pages pagination"}
+            activeClassName={"active"} />
         </div>
       </div>
     );
+  },
+  handlePageClick: function(data){
+    var selected = data.selected;
+    this.setState({pageNum:selected});
   }
 });
 

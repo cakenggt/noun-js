@@ -1,0 +1,17 @@
+.library-list {
+}
+#libraryList ul {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #efefef
+}
+
+#libraryList li {
+  display: inline-block;
+  margin: 5px;
+}
+
+#libraryList .break a {
+  cursor: default;
+}
