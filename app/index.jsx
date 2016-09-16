@@ -29,26 +29,42 @@ var LibraryList = React.createClass({
     var stop = start+numOnPage;
     var libraryLinks = nounList.slice(start, stop).map(function(noun, i){
       return (
-        <span key={noun}>
-          <Link to={noun}>{noun}.js</Link>
-          <br/>
-        </span>
+        <Link
+          to={noun}
+          key={noun}>
+          <li
+            className="library-item">
+            <h3>
+              {noun}.js
+            </h3>
+          </li>
+        </Link>
       );
     });
     return (
       <div>
-        <h1>
-          <i
-            className="material-icons"
-            title="Javascript Library Directory">
-            book
-          </i>
-          Javascript Library Directory
-        </h1>
+        <div
+          className="header">
+          <h1>
+            <i
+              className="material-icons"
+              title="Javascript Library Directory">
+              book
+            </i>
+            Javascript Library Directory
+          </h1>
+          <h2>
+            This page is the definitive directory of all up and coming
+            noun based JavaScript libraries
+          </h2>
+        </div>
         <div
           id="libraryList"
           className="library-list">
-          {libraryLinks}
+          <ul
+            className="library-list-ul">
+            {libraryLinks}
+          </ul>
           <ReactPaginate previousLabel={"previous"}
             nextLabel={"next"}
             breakLabel={<a href="">...</a>}
@@ -92,7 +108,7 @@ var LibraryDownload = React.createClass({
       Library.Array = function(){
         this.array = [];
       };
-      exports.${noun} = Library;
+      exports["${noun}"] = Library;
     })(typeof exports !== 'undefined' ? exports : this);`;
     return (
       <div>

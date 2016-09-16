@@ -95,38 +95,59 @@
 	    var stop = start + numOnPage;
 	    var libraryLinks = _nounlist.nounList.slice(start, stop).map(function (noun, i) {
 	      return _react2.default.createElement(
-	        'span',
-	        { key: noun },
+	        _reactRouter.Link,
+	        {
+	          to: noun,
+	          key: noun },
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: noun },
-	          noun,
-	          '.js'
-	        ),
-	        _react2.default.createElement('br', null)
+	          'li',
+	          {
+	            className: 'library-item' },
+	          _react2.default.createElement(
+	            'h3',
+	            null,
+	            noun,
+	            '.js'
+	          )
+	        )
 	      );
 	    });
 	    return _react2.default.createElement(
 	      'div',
 	      null,
 	      _react2.default.createElement(
-	        'h1',
-	        null,
+	        'div',
+	        {
+	          className: 'header' },
 	        _react2.default.createElement(
-	          'i',
-	          {
-	            className: 'material-icons',
-	            title: 'Javascript Library Directory' },
-	          'book'
+	          'h1',
+	          null,
+	          _react2.default.createElement(
+	            'i',
+	            {
+	              className: 'material-icons',
+	              title: 'Javascript Library Directory' },
+	            'book'
+	          ),
+	          'Javascript Library Directory'
 	        ),
-	        'Javascript Library Directory'
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'This page is the definitive directory of all up and coming noun based JavaScript libraries'
+	        )
 	      ),
 	      _react2.default.createElement(
 	        'div',
 	        {
 	          id: 'libraryList',
 	          className: 'library-list' },
-	        libraryLinks,
+	        _react2.default.createElement(
+	          'ul',
+	          {
+	            className: 'library-list-ul' },
+	          libraryLinks
+	        ),
 	        _react2.default.createElement(_reactPaginate2.default, { previousLabel: "previous",
 	          nextLabel: "next",
 	          breakLabel: _react2.default.createElement(
@@ -179,7 +200,7 @@
 	
 	  render: function render() {
 	    var noun = this.props.params.noun;
-	    var library = '(function(exports){\n      var Library = {};\n      Library.Array = function(){\n        this.array = [];\n      };\n      exports.' + noun + ' = Library;\n    })(typeof exports !== \'undefined\' ? exports : this);';
+	    var library = '(function(exports){\n      var Library = {};\n      Library.Array = function(){\n        this.array = [];\n      };\n      exports["' + noun + '"] = Library;\n    })(typeof exports !== \'undefined\' ? exports : this);';
 	    return _react2.default.createElement(
 	      'div',
 	      null,
