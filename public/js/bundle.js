@@ -177,9 +177,13 @@
 	
 	  render: function render() {
 	    var noun = this.props.params.noun;
+	    var capNoun = noun.substr(0, 1).toUpperCase() + noun.substr(1);
+	    var quote1 = 'I firmly believe that ' + noun + '.js is going to redefine the way we approach web development, nay, engineering in the future';
+	    var quote2 = 'Forget MV*, we\'ll be valuing companies based on what kind of ' + noun + '.js framework they are using soon';
 	    return _react2.default.createElement(
 	      'div',
-	      null,
+	      {
+	        className: 'library-container' },
 	      _react2.default.createElement(
 	        'h1',
 	        null,
@@ -187,9 +191,42 @@
 	        '.js'
 	      ),
 	      _react2.default.createElement(
-	        _reactRouter.Link,
-	        { to: 'assets/' + noun },
-	        'Download'
+	        'p',
+	        {
+	          className: 'library-description' },
+	        _react2.default.createElement(
+	          'strong',
+	          null,
+	          capNoun
+	        ),
+	        ' is the next big JavaScript library, transforming the web development ecosystem into a powerhouse ready to supplant all native applications.'
+	      ),
+	      _react2.default.createElement(BlockQuote, { quote: quote1, author: 'Bill Gates, Microsoft CEO' }),
+	      _react2.default.createElement(BlockQuote, { quote: quote2, author: 'Steve Jobs, Apple CEO' }),
+	      _react2.default.createElement(
+	        'p',
+	        {
+	          className: 'library-description' },
+	        'What are you waiting for? ',
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: 'assets/' + noun },
+	          'Download ',
+	          noun,
+	          '.js'
+	        ),
+	        ' before this wave moves on without you!'
+	      ),
+	      _react2.default.createElement(
+	        'h2',
+	        null,
+	        'Documentation'
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        {
+	          className: 'library-description' },
+	        'Coming soon!'
 	      )
 	    );
 	  }
@@ -205,6 +242,41 @@
 	      'div',
 	      null,
 	      library
+	    );
+	  }
+	});
+	
+	var BlockQuote = _react2.default.createClass({
+	  displayName: 'BlockQuote',
+	
+	  propTypes: {
+	    quote: _react2.default.PropTypes.string.isRequired,
+	    author: _react2.default.PropTypes.string
+	  },
+	  render: function render() {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'blockquote',
+	        null,
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'open' },
+	          '“'
+	        ),
+	        this.props.quote,
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'close' },
+	          '”'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'i',
+	        null,
+	        this.props.author
+	      )
 	    );
 	  }
 	});

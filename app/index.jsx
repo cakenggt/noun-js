@@ -89,12 +89,35 @@ var LibraryList = React.createClass({
 var LibraryPage = React.createClass({
   render: function(){
     var noun = this.props.params.noun;
+    var capNoun = noun.substr(0,1).toUpperCase()+noun.substr(1);
+    var quote1 = `I firmly believe that ${noun}.js is going to redefine the way we approach web development, nay, engineering in the future`;
+    var quote2 = `Forget MV*, we'll be valuing companies based on what kind of ${noun}.js framework they are using soon`;
     return (
-      <div>
+      <div
+        className="library-container">
         <h1>
           {noun}.js
         </h1>
-        <Link to={'assets/' + noun}>Download</Link>
+        <p
+          className="library-description">
+          <strong>{capNoun}</strong> is the next big JavaScript library, transforming the
+          web development ecosystem into a powerhouse
+          ready to supplant all native applications.
+        </p>
+        <BlockQuote quote={quote1} author="Bill Gates, Microsoft CEO"/>
+        <BlockQuote quote={quote2} author="Steve Jobs, Apple CEO"/>
+        <p
+          className="library-description">
+          What are you waiting for? <Link to={'assets/' + noun}>Download {noun}.js</Link> before this wave
+          moves on without you!
+        </p>
+        <h2>
+          Documentation
+        </h2>
+        <p
+          className="library-description">
+          Coming soon!
+        </p>
       </div>
     );
   }
@@ -113,6 +136,25 @@ var LibraryDownload = React.createClass({
     return (
       <div>
         {library}
+      </div>
+    );
+  }
+});
+
+var BlockQuote = React.createClass({
+  propTypes: {
+    quote: React.PropTypes.string.isRequired,
+    author: React.PropTypes.string
+  },
+  render: function(){
+    return (
+      <div>
+        <blockquote>
+          <span className="open">“</span>
+            {this.props.quote}
+          <span className="close">”</span>
+        </blockquote>
+        <i>{this.props.author}</i>
       </div>
     );
   }

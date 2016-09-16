@@ -65,3 +65,46 @@ body {
   padding: 20px;
   font-family: sans-serif;
 }
+.library-container {
+  min-width: 600px;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+.library-container h1 {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Lobster', cursive;
+  font-size: 90px;
+}
+.library-container h2 {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  font-family: 'Lobster', cursive;
+  font-size: 50px;
+}
+.library-description {
+  font-family: 'Raleway', sans-serif;
+}
+blockquote span.open {
+	position: relative;
+	top: 0.4em;
+	font-size: 5em;
+	color: #EFEFEF;
+}
+blockquote span.close {
+	position: relative;
+	top: 0.4em;
+	font-size: 5em;
+	color: #EFEFEF;
+}
+blockquote {
+	color: #BBB;
+	font-size: 2em;
+	line-height: 2em;
+  box-shadow: gray 2px 2px 12px;
+  padding: 0px 10px;
+  border-radius: 3px;
+}
